@@ -118,12 +118,12 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
+      inputs.home-manager.packages.${pkgs.system}.default
       git
       vim # The Nano editor is also installed by default.
-      wget
       helix
       nil
-      floorp
+      wget
     ];
 
   # Define a user account.
