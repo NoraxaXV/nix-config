@@ -59,6 +59,7 @@
   };
 
   home.packages = with pkgs; [
+    tmux
     steam
     floorp
   ];

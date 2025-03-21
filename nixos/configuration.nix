@@ -38,13 +38,9 @@
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
     };
     # Opinionated: disable channels
-    channel.enable = false;
+    channel.enable = true;
 
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
@@ -60,15 +56,11 @@
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
     # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
     # Enable networking
     networking.networkmanager.enable = true;
-
     time.timeZone = "America/Indiana/Indianapolis";
-
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
-
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -82,7 +74,6 @@
     };
 
     services.xserver.videoDrivers = ["nvidia"];
-
     hardware.graphics.enable = true;
     hardware.nvidia = {
       modesetting.enable = true;
@@ -132,17 +123,14 @@
       wget
       helix
       nil
+      floorp
     ];
-
 
   # Define a user account.
   users.users.noraxaxv = {
     isNormalUser = true;
     description = "noraxaxv";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
   };
 
 
