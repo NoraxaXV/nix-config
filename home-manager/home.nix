@@ -46,7 +46,7 @@
   # Add stuff for your user as you see fit:
   programs.helix = {
     enable = true;
-    settings = { theme = "material-darker"; };
+    settings = { theme = "material_darker"; };
     languages.language = [{
       name = "nix";
       auto-format = true;
@@ -54,7 +54,15 @@
     }];
   };
 
-  home.packages = with pkgs; [ steam floorp ];
+  home.packages = with pkgs; [
+    steam
+    floorp
+    upscayl
+    blender
+    audacity
+    gimp
+    musescore
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
