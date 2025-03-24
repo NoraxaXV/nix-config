@@ -134,7 +134,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  programs.steam.enable = true;
+  programs.steam = { enable = true; };
+  programs.gamemode.enable = true;
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = [ "noraxaxv" ];

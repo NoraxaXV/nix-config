@@ -55,13 +55,21 @@
   };
 
   home.packages = with pkgs; [
-    steam
     floorp
     upscayl
     blender
     audacity
     gimp
     musescore
+    protonplus
+    mangohud
+    (prismlauncher.override {
+      # Add binary required by some mod
+      additionalPrograms = [ ffmpeg ];
+
+      # Change Java runtimes available to Prism Launcher
+      jdks = [ zulu8 zulu17 zulu23 zulu ];
+    })
   ];
 
   # Enable home-manager and git
