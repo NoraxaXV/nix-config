@@ -125,6 +125,8 @@
     spice
     ebtables
     dnsmasq
+    moonlight-qt
+    steam-run
   ];
 
   # Define a user account.
@@ -151,6 +153,12 @@
     spiceUSBRedirection.enable = true;
   };
   services.spice-vdagentd.enable = true;
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";

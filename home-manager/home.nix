@@ -41,6 +41,15 @@
   home = {
     username = "noraxaxv";
     homeDirectory = "/home/noraxaxv";
+    sessionVariables = {
+      SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "NoraxaXV";
+    userEmail = "kurororbm@gmail.com";
   };
 
   # Add stuff for your user as you see fit:
@@ -61,20 +70,21 @@
     audacity
     gimp
     musescore
-    protonplus
+    protonup-qt
     mangohud
+    discord
+    spotify
     (prismlauncher.override {
       # Add binary required by some mod
       additionalPrograms = [ ffmpeg ];
-
       # Change Java runtimes available to Prism Launcher
       jdks = [ zulu8 zulu17 zulu23 zulu ];
     })
+    gh
+    kdePackages.ksshaskpass
   ];
 
-  # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
