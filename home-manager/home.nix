@@ -43,6 +43,7 @@
     homeDirectory = "/home/noraxaxv";
     sessionVariables = {
       SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+      SSH_ASKPASS_REQUIRE = "prefer";
     };
   };
 
@@ -51,6 +52,8 @@
     userName = "NoraxaXV";
     userEmail = "kurororbm@gmail.com";
   };
+
+  services.ssh-agent.enable = true;
 
   # Add stuff for your user as you see fit:
   programs.helix = {
@@ -81,7 +84,6 @@
       jdks = [ zulu8 zulu17 zulu23 zulu ];
     })
     gh
-    kdePackages.ksshaskpass
   ];
 
   programs.home-manager.enable = true;
