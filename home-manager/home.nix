@@ -72,6 +72,8 @@
     blender
     audacity
     gimp
+    kdePackages.kdenlive
+    haruna
     musescore
     protonup-qt
     mangohud
@@ -84,7 +86,14 @@
       jdks = [ zulu8 zulu17 zulu23 zulu ];
     })
     gh
+
+    # Fonts
+    nerd-fonts.hack
+    nerd-fonts.fira-mono
+    orbitron
+    fira
   ];
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
 
