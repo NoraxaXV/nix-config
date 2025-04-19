@@ -112,6 +112,7 @@
     nerd-fonts.fira-mono
     orbitron
     fira
+    inter
   ];
   fonts.fontconfig.enable = true;
 
