@@ -46,16 +46,33 @@
       SSH_ASKPASS_REQUIRE = "prefer";
     };
   };
-
   programs.git = {
     enable = true;
     userName = "NoraxaXV";
     userEmail = "kurororbm@gmail.com";
   };
-
+  programs.lazygit.enable = true;
   services.ssh-agent.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
-  # Add stuff for your user as you see fit:
+    shellAliases = {
+      update-os = "sudo nixos-rebuild switch --flake .";
+      update-home = "home-manager switch --flake .";
+      logout-kde = "qdbus org.kde.KWin /Session org.kde.KWin.Session.quit";
+    };
+    oh-my-zsh = {
+      enable = true;
+      theme = "fino";
+    };
+  };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.helix = {
     enable = true;
     settings = { theme = "material_darker"; };
@@ -73,12 +90,15 @@
     audacity
     gimp
     kdePackages.kdenlive
+    kdePackages.ksshaskpass
     haruna
     musescore
     protonup-qt
     mangohud
     discord
     spotify
+    lutris
+    devenv
     (prismlauncher.override {
       # Add binary required by some mod
       additionalPrograms = [ ffmpeg ];

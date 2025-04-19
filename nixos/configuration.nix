@@ -26,6 +26,7 @@
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
+      trusted-users = [ "root" "noraxaxv" ];
     };
     # Opinionated: disable channels
     channel.enable = true;
@@ -121,7 +122,7 @@
     helix
     nil
     wget
-
+    rar
     virtio-win
     win-virtio
     virt-manager
@@ -138,7 +139,8 @@
     description = "noraxaxv";
     extraGroups = [ "networkmanager" "wheel" ];
   };
-
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
   programs.steam = { enable = true; };
   programs.gamemode.enable = true;
 
