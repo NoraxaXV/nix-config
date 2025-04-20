@@ -1,25 +1,8 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [ ./hardware-configuration.nix ];
 
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    config = { allowUnfree = true; };
-  };
+  nixpkgs = { config = { allowUnfree = true; }; };
 
   nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -28,9 +11,6 @@
       experimental-features = "nix-command flakes";
       trusted-users = [ "root" "noraxaxv" ];
     };
-    # Opinionated: disable channels
-    channel.enable = true;
-
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
@@ -39,12 +19,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "i915.invert_brightness=1" ];
+  boot.kernelParams = [ ];
   networking.hostName = "excalibur"; # Define your hostname.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   # Enable networking
   networking.networkmanager.enable = true;
   time.timeZone = "America/Indiana/Indianapolis";
