@@ -20,12 +20,12 @@
         excalibur = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            ./nixos/excalibur/configuration.nix
+            ./hosts/excalibur/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.noraxaxv = ./nixos/excalibur/home.nix;
+              home-manager.users.noraxaxv = ./home/excalibur/home.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
