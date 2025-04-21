@@ -25,18 +25,10 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.noraxaxv = ./home/excalibur/home.nix;
+              home-manager.users.noraxaxv = ./hosts/excalibur/home.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
-        };
-      };
-
-      homeConfigurations = {
-        "noraxaxv@excalibur" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home-manager/home.nix ];
         };
       };
     };

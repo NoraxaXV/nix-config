@@ -19,7 +19,7 @@ in {
       type = lib.types.package;
       default = config.boot.kernelPackages.nvidiaPackages.latest;
       description = ''
-        NVIDIA Package to use. Defaults to latest.
+        NVIDIA Package to use. Defaults to the latest driver.
       '';
     };
 
@@ -37,7 +37,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = [ "i915" "nvidia" ];
 
     hardware.graphics.enable = true;
     hardware.nvidia = {
