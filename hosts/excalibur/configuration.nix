@@ -19,6 +19,12 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [ v4l2loopback.out ];
+  boot.kernelModules = [ "v4l2loopback" "snd-aloop" ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
   boot.kernelParams = [ ];
   networking.hostName = "excalibur"; # Define your hostname.
 

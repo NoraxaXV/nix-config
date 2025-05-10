@@ -20,7 +20,14 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
+    plugins = [{
+      name = "powerline10k";
+      src = pkgs.zsh-powerlevel10k;
+      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    }];
+    initExtra = ''
+      source ~/.p10k.zsh
+    '';
     shellAliases = {
       update-os = "sudo nixos-rebuild switch --flake .";
       update-home = "home-manager switch --flake .";
@@ -28,7 +35,18 @@
     };
     oh-my-zsh = {
       enable = true;
-      theme = "fino";
+      plugins = [ "git" "dirhistory" "history" ];
+    };
+  };
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+    attachExistingSession = true;
+    settings = {
+      theme = "one-half-dark";
+      show_startup_tips = false;
+      #default_layout = "classic";
+      default_mode = "locked";
     };
   };
   programs.direnv = {
@@ -53,6 +71,7 @@
     gimp
     kdePackages.kdenlive
     kdePackages.ksshaskpass
+    kdePackages.qtstyleplugin-kvantum
     haruna
     musescore
     protonup-qt
@@ -77,6 +96,15 @@
     inter
   ];
   fonts.fontconfig.enable = true;
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-vkcapture
+      obs-pipewire-audio-capture
+      obs-mute-filter
+    ];
+  };
 
   programs.home-manager.enable = true;
 
