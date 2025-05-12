@@ -25,7 +25,7 @@
       src = pkgs.zsh-powerlevel10k;
       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }];
-    initExtra = ''
+    initContent = ''
       source ~/.p10k.zsh
     '';
     shellAliases = {
@@ -43,10 +43,10 @@
     enableZshIntegration = true;
     attachExistingSession = true;
     settings = {
-      theme = "one-half-dark";
+      theme = "ao";
       show_startup_tips = false;
       #default_layout = "classic";
-      default_mode = "locked";
+      #default_mode = "locked";
     };
   };
   programs.direnv = {
@@ -72,6 +72,7 @@
     kdePackages.kdenlive
     kdePackages.ksshaskpass
     kdePackages.qtstyleplugin-kvantum
+    kde-rounded-corners
     haruna
     musescore
     protonup-qt
