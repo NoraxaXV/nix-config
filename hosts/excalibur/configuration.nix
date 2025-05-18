@@ -55,11 +55,11 @@
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
     prime = {
-      # sync.enable = true;
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+      sync.enable = true;
+      # offload = {
+      #   enable = true;
+      #   enableOffloadCmd = true;
+      # };
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:0:1:0";
     };
@@ -99,6 +99,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     inputs.home-manager.packages.${pkgs.system}.default
     git
     vim # The Nano editor is also installed by default.
@@ -147,7 +148,16 @@
     autoStart = true;
     capSysAdmin = true;
   };
-
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    dina-font
+    proggyfonts
+  ];
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
 }

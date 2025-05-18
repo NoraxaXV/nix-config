@@ -1,5 +1,10 @@
 { inputs, lib, config, pkgs, ... }: {
 
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.zen-nebula.homeModules.default
+  ];
+
   home = {
     username = "noraxaxv";
     homeDirectory = "/home/noraxaxv";
@@ -43,7 +48,7 @@
     enableZshIntegration = true;
     attachExistingSession = true;
     settings = {
-      theme = "ao";
+      theme = "nord";
       show_startup_tips = false;
       #default_layout = "classic";
       #default_mode = "locked";
@@ -55,7 +60,7 @@
   };
   programs.helix = {
     enable = true;
-    settings = { theme = "material_darker"; };
+    settings = { theme = "nord-night"; };
     languages.language = [{
       name = "nix";
       auto-format = true;
@@ -65,6 +70,7 @@
 
   home.packages = with pkgs; [
     floorp
+    inputs.zen-browser.packages."${system}".default
     upscayl
     blender
     audacity
@@ -77,8 +83,7 @@
     musescore
     protonup-qt
     mangohud
-    discord
-    spotify
+    equibop
     lutris
     devenv
     (prismlauncher.override {
@@ -95,7 +100,23 @@
     orbitron
     fira
     inter
+
   ];
+
+  programs.spicetify =
+    let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+    in {
+      enable = true;
+      theme = spicePkgs.themes.matte;
+      colorScheme = "gray-dark1";
+    };
+
+  # To enable zen browswer transparency
+  zen-nebula = {
+    enable = false;
+    profile = "default";
+  };
+
   fonts.fontconfig.enable = true;
 
   programs.obs-studio = {
