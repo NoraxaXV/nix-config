@@ -4,7 +4,6 @@
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.zen-nebula.homeModules.default
   ];
-
   home = {
     username = "noraxaxv";
     homeDirectory = "/home/noraxaxv";
@@ -13,6 +12,8 @@
       SSH_ASKPASS_REQUIRE = "prefer";
     };
   };
+  services.kdeconnect.enable = true;
+
   programs.git = {
     enable = true;
     userName = "NoraxaXV";
@@ -60,7 +61,7 @@
   };
   programs.helix = {
     enable = true;
-    settings = { theme = "nord-night"; };
+    settings = { theme = "material_darker"; };
     languages.language = [{
       name = "nix";
       auto-format = true;
@@ -79,6 +80,7 @@
     kdePackages.ksshaskpass
     kdePackages.qtstyleplugin-kvantum
     kde-rounded-corners
+    plasma-panel-colorizer
     haruna
     musescore
     protonup-qt
@@ -86,6 +88,7 @@
     equibop
     lutris
     devenv
+    mcpelauncher-ui-qt
     (prismlauncher.override {
       # Add binary required by some mod
       additionalPrograms = [ ffmpeg ];
@@ -106,7 +109,7 @@
   programs.spicetify =
     let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
     in {
-      enable = true;
+      enable = false;
       theme = spicePkgs.themes.matte;
       colorScheme = "gray-dark1";
     };

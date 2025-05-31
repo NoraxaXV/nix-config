@@ -2,7 +2,17 @@
   # You can import other NixOS modules here
   imports = [ ./hardware-configuration.nix ];
 
-  nixpkgs = { config = { allowUnfree = true; }; };
+  nixpkgs = {
+    config = { allowUnfree = true; };
+    overlays = [
+      (final: prev: {
+        plasma-panel-colorizer = prev.plasma-panel-colorizer.overrideAttrs {
+          postInstall =
+            "chmod 755 $out/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/tools/list_presets.sh";
+        };
+      })
+    ];
+  };
 
   nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -114,6 +124,8 @@
     ebtables
     dnsmasq
     moonlight-qt
+    materia-kde-theme
+    materia-theme
     steam-run
   ];
 
