@@ -89,6 +89,7 @@
     lutris
     devenv
     mcpelauncher-ui-qt
+    tail-tray
     (prismlauncher.override {
       # Add binary required by some mod
       additionalPrograms = [ ffmpeg ];
