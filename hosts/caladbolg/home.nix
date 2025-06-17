@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [ ../../home-modules/shell-tools.nix ];
+  imports = [ ../../modules/home/shell-tools.nix ];
   home = {
     username = "noraxaxv";
     homeDirectory = "/home/noraxaxv";

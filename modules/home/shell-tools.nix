@@ -2,11 +2,8 @@
 let
   inherit (lib) mkIf mkOption types;
   cfg = config.shell-tools;
-in
-{
-  options = {
-   shell-tools.enable = lib.mkEnableOption ""; 
-  };
+in {
+  options = { shell-tools.enable = lib.mkEnableOption ""; };
 
   config = mkIf cfg.enable {
     programs.git = {
@@ -39,6 +36,8 @@ in
         plugins = [ "git" "dirhistory" "history" ];
       };
     };
+    home.file."~/.p10k.zsh".source = ./.p10k.zsh;
+
     programs.zellij = {
       enable = true;
       enableZshIntegration = true;
@@ -61,7 +60,7 @@ in
         name = "nix";
         auto-format = true;
         formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt";
-     }];
+      }];
     };
   };
 }
