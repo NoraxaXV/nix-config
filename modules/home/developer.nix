@@ -1,11 +1,26 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf mkOption types;
-  cfg = config.shell-tools;
+  inherit (lib) mkIf mkEnableOption  mkOption types;
+  cfg = config.profiles.developer;
 in {
-  options = { shell-tools.enable = lib.mkEnableOption ""; };
+  options = {
+    profiles.developer = {
+      enable = mkEnableOption "";
+      zsh.enable = mkEnableOption "";
+      git.enable = mkEnableOption "";
+      vscode.enable = mkEnableOption "";
+      helix = {
+        enable = mkEnableOption "";
+        theme = mkOption {
+          type = types.string;
+          default = "material_darker";
+        };
+      };
+      ghostty.enable = mkEnableOption "";  
+  };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ nil devenv ];
     programs.git = {
       enable = true;
       userName = "NoraxaXV";
