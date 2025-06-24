@@ -1,9 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
 
-  imports = [
-    inputs.spicetify-nix.homeManagerModules.spicetify
-    inputs.zen-nebula.homeModules.default
-  ];
+  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
   home = {
     username = "noraxaxv";
     homeDirectory = "/home/noraxaxv";
@@ -86,7 +83,9 @@
     protonup-qt
     mangohud
     equibop
+    slack
     lutris
+    wine
     devenv
     mcpelauncher-ui-qt
     tail-tray
@@ -110,16 +109,10 @@
   programs.spicetify =
     let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
     in {
-      enable = false;
+      enable = true;
       theme = spicePkgs.themes.matte;
       colorScheme = "gray-dark1";
     };
-
-  # To enable zen browswer transparency
-  zen-nebula = {
-    enable = false;
-    profile = "default";
-  };
 
   fonts.fontconfig.enable = true;
 

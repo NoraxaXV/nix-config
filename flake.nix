@@ -17,8 +17,6 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-nebula.url =
-      "github:JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

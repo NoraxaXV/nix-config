@@ -20,6 +20,7 @@
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
       trusted-users = [ "root" "noraxaxv" ];
+      warn-dirty = false;
     };
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
@@ -179,7 +180,15 @@
   };
 
   services.tailscale.enable = true;
-
+  services.adguardhome = {
+    enable = true;
+    settings = {
+      filtering = {
+        filtering_enabled = true;
+        safe_search.enabled = true;
+      };
+    };
+  };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
 }
