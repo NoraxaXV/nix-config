@@ -32,8 +32,8 @@
       source ~/.p10k.zsh
     '';
     shellAliases = {
-      update-os = "sudo nixos-rebuild switch --flake .";
-      update-home = "home-manager switch --flake .";
+      nrs = "sudo nixos-rebuild switch --flake .";
+      hms = "home-manager switch --flake .";
       logout-kde = "qdbus org.kde.KWin /Session org.kde.KWin.Session.quit";
     };
     oh-my-zsh = {
@@ -83,6 +83,7 @@
     protonup-qt
     mangohud
     equibop
+    beeper
     slack
     lutris
     wine

@@ -180,15 +180,6 @@
   };
 
   services.tailscale.enable = true;
-  services.adguardhome = {
-    enable = true;
-    settings = {
-      filtering = {
-        filtering_enabled = true;
-        safe_search.enabled = true;
-      };
-    };
-  };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
 }
